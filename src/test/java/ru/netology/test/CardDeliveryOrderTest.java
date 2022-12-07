@@ -27,22 +27,22 @@ public class CardDeliveryOrderTest {
 
     @Test
     void shouldTestAllFields() {
-        String dataDelivery = dataText.returnDate(5);
-        $("[data-test-id=city] [placeholder='Город']").setValue("Москва");
-        $("[data-test-id=date] [placeholder='Дата встречи']").
-                sendKeys( Keys.CONTROL +"A",Keys.DELETE);
-        $("[data-test-id=date] [placeholder='Дата встречи']").
-                setValue(String.valueOf(dataDelivery));
-        $("[data-test-id=name] [name='name']").setValue("Романов");
-        $("[data-test-id=phone] [name='phone']").setValue("+70000000000");
-        $("[data-test-id=date] [name='date']").setValue("planningDate");
-        $("[class=checkbox__box]").click();
-        $(withText("Забронировать")).click();
-
-        $(withText(dataDelivery)).
-                shouldBe(visible, Duration.ofSeconds(15));
+            String dataDelivery = dataText.returnDate(5);
+            $("[data-test-id=city] [placeholder='Город']").setValue("Москва");
+            $("[data-test-id=date] [placeholder='Дата встречи']").
+                    sendKeys( Keys.CONTROL +"A",Keys.DELETE);
+            $("[data-test-id=date] [placeholder='Дата встречи']").
+                    setValue(String.valueOf(dataDelivery));
+            $("[data-test-id=name] [name='name']").setValue("Романов");
+            $("[data-test-id=phone] [name='phone']").setValue("+70000000000");
+            $("[class=checkbox__box]").click();
+            $(withText("Забронировать")).click();
+            $(withText("Встреча успешно забронирована на")).
+                    shouldBe(visible, Duration.ofSeconds(15));
+            $(withText(dataDelivery)).
+                    shouldBe(visible, Duration.ofSeconds(15));
         $(".notification__content")
-                .shouldHave(Condition.text("Встреча успешно забронирована на "), Duration.ofSeconds(15))
+             .shouldHave(Condition.text("Встреча успешно забронирована на"), Duration.ofSeconds(15))
                 .shouldBe(Condition.visible);
 
     }
