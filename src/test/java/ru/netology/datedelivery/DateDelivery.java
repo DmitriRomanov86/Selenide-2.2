@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class DateDelivery {
-    public String returnDate (int plusDays){
+    public String returnDate(int plusDays) {
         LocalDate date = LocalDate.now();
         LocalDate dateDelivery = date.plusDays(plusDays);
         DateTimeFormatter formatters = DateTimeFormatter.ofPattern("dd.MM.yyyy");
